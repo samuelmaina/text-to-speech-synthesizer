@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Text to Speech Synthesizer</title>
+    <style>
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      button {
+        margin: 1rem 0;
+        font-size: 1.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Text-to-Speech Implementation</h1>
+      <textarea
+        name="message"
+        id="message"
+        cols="30"
+        rows="20"
+        placeholder="Type what you would like to be read."
+      ></textarea>
+      <button onclick="read()">Click to Speak</button>
+      <script>
+        const speak = (msg) => {
+          const sp = new SpeechSynthesisUtterance(msg);
+          [sp.voice] = speechSynthesis.getVoices();
+          speechSynthesis.speak(sp);
+        };
+        function read() {
+          const message = document.getElementById("message").value;
+          speak(message);
+        }
+      </script>
+    </div>
+  </body>
+</html>
